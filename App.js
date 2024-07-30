@@ -19,8 +19,9 @@ export default class App extends Component {
 
   minesAmount = () =>{
     const cols = params.getColumnsAmount()
-    const rows = params.getRowsAmount()
-    return Math.ceil(cols * rows * params.diffcultLevel)
+    const rows = params.getRowsAmount()    
+    console.warn(cols, rows, params.difficultLevel)
+    return Math.ceil(cols * rows * params.difficultLevel)
   }
 
   createState = () => {
@@ -33,6 +34,7 @@ export default class App extends Component {
     }  
 
   }
+  
 
 
   openField = (row, column) => {
@@ -40,7 +42,6 @@ export default class App extends Component {
     openField(board, row, column)
     const lost = hadExplosion(board)
     const won = wonGame(board)
-    console.warn(board)
     if(lost) {
       showMines(board)
       Alert.alert('Perdeeeeu!', 'Que burro!')
@@ -48,7 +49,6 @@ export default class App extends Component {
     if(won) {
       Alert.alert('Parabéns', 'Você venceu!')
     }
-    console.warn('abriu')
     this.setState({board, won, lost})
 
   }
